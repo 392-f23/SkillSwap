@@ -41,8 +41,8 @@ const App = () => {
     <div className="App">
       <h1>SkillSwap</h1>
       {data.map((person, index) => (
+        <div className='skill-cards'>
         <Card key={index} style={{ width: '18rem' }}>
-          {/* Assuming you have an image for each person, you can specify the source here */}
           <Card.Img variant="top" src={person.image} />
           <Card.Body>
             <Card.Title>{person.name}</Card.Title>
@@ -52,6 +52,7 @@ const App = () => {
             <Button variant="primary">Contact</Button>
           </Card.Body>
         </Card>
+        </div>
       ))}
     </div>
   );
