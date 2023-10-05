@@ -47,7 +47,10 @@ const App = () => {
           <Card.Body>
             <Card.Title>{person.name}</Card.Title>
             <Card.Text>
-              Skills: {person["skills-have"].join(', ')}
+              Skills have: {person["skills-have"].join(', ')}
+            </Card.Text>
+            <Card.Text>
+              Skills want: {person["skills-want"].join(', ')}
             </Card.Text>
             <Button variant="primary">Contact</Button>
           </Card.Body>
