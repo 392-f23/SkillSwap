@@ -10,72 +10,84 @@
     z-index: 1001;  /* So it appears on top of the sidebar */
 }
 
-.skill-cards {
+button {
+    font-size: calc(10px + 2vmin);
+  }
+  
+  
+  .skill-cards {
     margin: 20px;
-    perspective: 1500px;  /* Gives a 3D effect perspective */
-}
-
-.skill-cards > .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Initial shadow for depth */
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
-    border-radius: 8px; /* Round the corners */
-    margin-bottom: 20px; /* Spacing between cards */
-}
-
-.skill-cards > .card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  /* Enhanced shadow on hover */
-    transform: translateY(-5px);  /* Slight upward move on hover */
-}
-
-.skill-cards > .card > .card-img-top {
-    position: relative;
-}
-
-.skill-cards > .card > .card-img-top::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.1); /* Slight overlay on images */
-}
-
-.skill-cards > .card > .card-body {
-    padding: 20px; /* Inner spacing of the card's content */
-}
-
-.skill-cards > .card > .card-img-top {
-    position: relative;
-    transition: filter 0.3s; /* Smooth transition for the blur effect */
-}
-
-.skill-cards > .card > .card-img-top:hover {
-    filter: brightness(50%) blur(2px); /* Darken and blur on hover */
-}
-
-.image-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: top; /* Centering the text in the middle */
-    opacity: 0;  /* Hide initially */
-    transition: opacity 0.3s; /* Smooth transition for the opacity */
-    color: white; /* Text color */
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-    font-size: 18px; /* Adjust as needed */
-    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    width: 18rem;
+  }
+  
+  .skill-cards:hover {
+    transform: translateY(-5px);
+  }
+  
+  .skill-cards .card {
+    border: none;
+  }
+  
+  .skill-cards .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .skill-cards .card-text {
+    font-size: 0.9rem;
+  }
+  
+  .skill-cards .card-img-top {
+    object-fit: cover;
+    height: 200px; /* Adjust the height as needed */
+  }
+  
+  .skill-cards .card-body {
+    padding: 1rem;
+  }
+  
+  .skill-cards .btn {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+  }
+  
+  .skill-cards .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .skill-cards .skills-section {
+    margin-top: 10px;
     padding: 10px;
-
-}
-
-.skill-cards > .card:hover .image-overlay {
-    opacity: 2; /* Show the overlay on hover */
-}
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    margin-bottom: 10px; /* Add margin to create space */
+  }
+  
+  .skill-cards .skills-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .skill-cards .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .skill-cards .skill-tag {
+    background-color: #007bff;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+  }
+  
 
 

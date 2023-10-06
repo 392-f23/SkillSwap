@@ -48,24 +48,35 @@ const SwapPage = () => {
     <Sidebar show={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <h1>SkillSwap</h1>
       {data.map((person, index) => (
-        <div className='skill-cards'>
-        <Card key={index} style={{ width: '18rem' }}>
+      <div className="skill-cards">
+        <Card style={{ width: "18rem" }}>
           <Card.Img variant="top" src={person.image} />
-          <div className="image-overlay">
-            <div className="image-text">{person.description}</div>
-            </div>
           <Card.Body>
             <Card.Title>{person.name}</Card.Title>
-            <Card.Text>
-              Skills have: {person["skills-have"].join(', ')}
-            </Card.Text>
-            <Card.Text>
-              Skills want: {person["skills-want"].join(', ')}
-            </Card.Text>
+            <div className="skills-section">
+              <div className="skills-label">Skills Have:</div>
+              <div className="skills-list">
+                {person["skills-have"].map((skill, index) => (
+                  <span key={index} className="skill-tag">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="skills-section">
+              <div className="skills-label">Skills Want:</div>
+              <div className="skills-list">
+                {person["skills-want"].map((skill, index) => (
+                  <span key={index} className="skill-tag">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
             <Button variant="primary">Contact</Button>
           </Card.Body>
         </Card>
-        </div>
+      </div>
       ))}
     </div>
   );
