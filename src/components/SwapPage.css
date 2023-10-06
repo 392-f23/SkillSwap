@@ -1,0 +1,81 @@
+.sidebar-toggle-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    font-size: 24px;
+    border-radius: 4px;
+    z-index: 1001;  /* So it appears on top of the sidebar */
+}
+
+.skill-cards {
+    margin: 20px;
+    perspective: 1500px;  /* Gives a 3D effect perspective */
+}
+
+.skill-cards > .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Initial shadow for depth */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+    border-radius: 8px; /* Round the corners */
+    margin-bottom: 20px; /* Spacing between cards */
+}
+
+.skill-cards > .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  /* Enhanced shadow on hover */
+    transform: translateY(-5px);  /* Slight upward move on hover */
+}
+
+.skill-cards > .card > .card-img-top {
+    position: relative;
+}
+
+.skill-cards > .card > .card-img-top::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.1); /* Slight overlay on images */
+}
+
+.skill-cards > .card > .card-body {
+    padding: 20px; /* Inner spacing of the card's content */
+}
+
+.skill-cards > .card > .card-img-top {
+    position: relative;
+    transition: filter 0.3s; /* Smooth transition for the blur effect */
+}
+
+.skill-cards > .card > .card-img-top:hover {
+    filter: brightness(50%) blur(2px); /* Darken and blur on hover */
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: top; /* Centering the text in the middle */
+    opacity: 0;  /* Hide initially */
+    transition: opacity 0.3s; /* Smooth transition for the opacity */
+    color: white; /* Text color */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    font-size: 18px; /* Adjust as needed */
+    text-align: center;
+    padding: 10px;
+
+}
+
+.skill-cards > .card:hover .image-overlay {
+    opacity: 2; /* Show the overlay on hover */
+}
+
+
