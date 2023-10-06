@@ -1,0 +1,28 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    transition: 0.3s;
+    overflow-y: scroll;
+    z-index: 1000;  /* So it appears on top of other content */
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
