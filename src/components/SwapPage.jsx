@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './SwapPage.css';
 import { Button, Card } from "react-bootstrap";
 import Sidebar from './SideBar';
-
+import ImageDisplay from './GetImage';
 import { db } from '..';
 import { fetchDataArray } from '../utilities/fetch_data'
 
@@ -83,7 +83,8 @@ const SwapPage = () => {
       {data.map((person, index) => (
       <div className="skill-cards">
         <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={person.image} />
+          {/* <ImageDisplay storagePath="https://firebasestorage.googleapis.com/v0/b/skillswap-5f85d.appspot.com/o/0.jpg?alt=media&token=3c4c0502-4271-40e1-ba70-57b9ea0eefdb&_gl=1*hg7oh*_ga*MTY2MjQ5MzkyOC4xNjkyMzEzMDY5*_ga_CW55HF8NVT*MTY5NzA1ODUzOC4xOC4xLjE2OTcwNjA2NjIuNjAuMC4w" /> */}
+          <Card.Img variant="top" src="https://firebasestorage.googleapis.com/v0/b/skillswap-5f85d.appspot.com/o/0.jpg?alt=media&token=3c4c0502-4271-40e1-ba70-57b9ea0eefdb&_gl=1*hg7oh*_ga*MTY2MjQ5MzkyOC4xNjkyMzEzMDY5*_ga_CW55HF8NVT*MTY5NzA1ODUzOC4xOC4xLjE2OTcwNjA2NjIuNjAuMC4w" />
           <Card.Body>
             <Card.Title>{person.name}</Card.Title>
             <div className="skills-section">
