@@ -6,45 +6,26 @@ import Sidebar from './SideBar';
 
 import { db } from '..';
 import { fetchDataArray } from '../utilities/fetch_data'
-
+import SearchBar from './SearchBar';
 
 const SwapPage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  // const data = [
-  //   {
-  //     name: "John Doe",
-  //     image: "johndoe.jpeg",
-  //     "skills-have": ["guitar", "music composition"],
-  //     "skills-want": ["tennis"],
-  //   },
-  //   {
-  //     name: "Jane Smith",
-  //     image: "janedoe.jpeg",
-  //     "skills-have": ["programming", "graphic design"],
-  //     "skills-want": ["photography"],
-  //   },
-  //   {
-  //     name: "Robert Johnson",
-  //     image: "robertjohnson.jpeg",
-  //     "skills-have": ["cooking", "gardening"],
-  //     "skills-want": ["hiking"],
-  //   },
-  //   {
-  //     name: "Emily Davis",
-  //     image: "emilydavis.jpeg",
-  //     "skills-have": ["writing", "public speaking"],
-  //     "skills-want": ["yoga"],
-  //   },
-  //   {
-  //     name: "Michael Wilson",
-  //     image: "michaelwilson.jpeg",
-  //     "skills-have": ["photography", "video editing"],
-  //     "skills-want": ["sailing"],
-  //   },
-  // ];
-
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+
+  function onSearch(searchTerm) {
+    const filteredPersons = data.filter((person) => {
+      return (
+        person.name.toLowerCase().includes(searchTerm.toLowerCase()) 
+        ||
+        person["skills-have"].some((skill) =>
+          skill.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    });
+
+    setFilteredData(filteredPersons);
+  }
 
   // using useEffect like this calls fetchData() once rather than repeatedly!!!
   // apparently useEffect doesn't allow async requests unless it's done this way
@@ -55,6 +36,7 @@ const SwapPage = () => {
         // fetchDataArray() => [{data}] (from fetch_data.js)
         const result = await fetchDataArray(db);
         setData(result);
+        setFilteredData(result);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -65,8 +47,10 @@ const SwapPage = () => {
   // data follows this format:
   // [
   //   user0: {
-  //     id: str // (filepath of image)
-  //             //  needs to be changed to grab from firebase storage
+  //     image: str (actual URL of image)
+  //     email: str
+  //     id: str // (name of the image)
+  //             //  we can keep it for now ...? 
   //     name: str 
   //     skills-have: str[]
   //     skills-want: str[]
@@ -80,7 +64,8 @@ const SwapPage = () => {
     <button className="sidebar-toggle-button" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
     <Sidebar show={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <h1>SkillSwap</h1>
-      {data.map((person, index) => (
+      <SearchBar onSearch={onSearch} />
+      {filteredData.map((person, index) => (
       <div className="skill-cards">
         <Card style={{ width: "18rem" }}>
           <Card.Img variant="top" src={person.image} />
