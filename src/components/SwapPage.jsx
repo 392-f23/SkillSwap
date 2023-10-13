@@ -106,7 +106,9 @@ const SwapPage = () => {
                 ))}
               </div>
             </div>
-            <Button variant="primary">Contact</Button>
+            <a href={`mailto:${person.email}`} >
+              <Button variant="primary">Contact</Button>
+            </a>
           </Card.Body>
         </Card>
       </div>
