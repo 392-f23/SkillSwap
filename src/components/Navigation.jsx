@@ -11,6 +11,9 @@ const SignOutButton = () => (
 
 const AuthButton = () => {
   const [user] = useAuthState();
+  if (user) {
+    console.log('User Info:', user.name, user.email, user.photoURL);
+  }
   return user ? <SignOutButton /> : <SignInButton />;
 };
 
