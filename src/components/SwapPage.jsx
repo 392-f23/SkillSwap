@@ -18,7 +18,7 @@ const SwapPage = () => {
       return (
         person.name.toLowerCase().includes(searchTerm.toLowerCase()) 
         ||
-        person["skills-have"].some((skill) =>
+        Object.entries(person["skills-have"]).some((skill) =>
           skill.toLowerCase().includes(searchTerm.toLowerCase())
         )
       );
@@ -72,7 +72,7 @@ const SwapPage = () => {
             <div className="skills-section">
               <div className="skills-label">Skills Have:</div>
               <div className="skills-list">
-                {person["skills-have"].map((skill, index) => (
+                {Object.entries(person["skills-have"]).map((skill, index) => (
                   <span key={index} className="skill-tag">
                     {skill}
                   </span>
