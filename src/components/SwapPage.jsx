@@ -7,6 +7,8 @@ import Sidebar from './SideBar';
 import { db } from '..';
 import { fetchDataArray } from '../utilities/fetch_data'
 import SearchBar from './SearchBar';
+import { RenderSkillsHave } from './SkillsHave';
+import { RenderSkillsWant } from './SkillsWant';
 
 const SwapPage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -64,36 +66,33 @@ const SwapPage = () => {
       <h1>SkillSwap</h1>
       <SearchBar onSearch={onSearch} />
       {filteredData.map((person, index) => (
-      <div className="skill-cards">
+      <div className="skill-cards-container" key= {index} >
+      <div className="skill-cards" key= {index} >
         <Card style={{ width: "18rem" }}>
           <Card.Img variant="top" src={person.image} />
           <Card.Body>
             <Card.Title>{person.name}</Card.Title>
             <div className="skills-section">
               <div className="skills-label">Skills Have:</div>
-              <div className="skills-list">
-                {Object.entries(person["skills-have"]).map((skill, index) => (
-                  <span key={index} className="skill-tag">
-                    {skill}
-                  </span>
-                ))}
-              </div>
+              <RenderSkillsHave skills={Object.entries(person["skills-have"])} />
             </div>
             <div className="skills-section">
               <div className="skills-label">Skills Want:</div>
-              <div className="skills-list">
+              <RenderSkillsWant skills={person["skills-want"]} />
+              {/* <div className="skills-list">
                 {person["skills-want"].map((skill, index) => (
                   <span key={index} className="skill-tag">
                     {skill}
                   </span>
                 ))}
-              </div>
+              </div> */}
             </div>
             <a href={`mailto:${person.email}`} >
               <Button variant="primary">Contact</Button>
             </a>
           </Card.Body>
         </Card>
+      </div>
       </div>
       ))}
     </div>

@@ -14,7 +14,12 @@ button {
     font-size: calc(10px + 2vmin);
   }
   
-  
+  .skill-cards-container {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+  }
+
   .skill-cards {
     margin: 20px;
     display: inline-block;
@@ -23,6 +28,7 @@ button {
     overflow: hidden;
     transition: transform 0.3s ease;
     width: 18rem;
+    vertical-align: top;
   }
   
   .skill-cards:hover {
@@ -41,6 +47,7 @@ button {
   
   .skill-cards .card-text {
     font-size: 0.9rem;
+    
   }
   
   .skill-cards .card-img-top {
@@ -79,6 +86,7 @@ button {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+    justify-content: center;
   }
   
   .skill-cards .skill-tag {
