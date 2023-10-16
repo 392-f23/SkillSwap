@@ -8,6 +8,8 @@ import ProfileForm from './ProfileForm';
 import { db } from '..';
 import { fetchDataArray } from '../utilities/fetch_data'
 import { collection, doc, setDoc, updateDoc, getDoc } from 'firebase/firestore';
+import Navigation from './Navigation';
+import { BrowserRouter } from 'react-router-dom';
 
 const SwapPage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -95,6 +97,9 @@ const SwapPage = () => {
   return (
     <div>
     <button className="sidebar-toggle-button" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
+    <BrowserRouter>
+      <Navigation></Navigation>
+    </BrowserRouter>
     <Sidebar show={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <ProfileForm onProfileSubmit={handleProfileSubmit} />
       <h1>SkillSwap</h1>
@@ -108,7 +113,7 @@ const SwapPage = () => {
             <div className="skills-section">
               <div className="skills-label">Skills Have:</div>
               <div className="skills-list">
-                {person["skills-have"].map((skill, index) => (
+                {Object.entries(person["skills-have"]).map((skill, index) => (
                   <span key={index} className="skill-tag">
                     {skill}
                   </span>

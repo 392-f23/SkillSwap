@@ -5,7 +5,8 @@ import App from './App';
 import { getStorage } from 'firebase/storage';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore';
-
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { useState, useEffect } from 'react';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -45,5 +46,23 @@ export const getDownloadURL = async (storageRef) => {
     console.error("Error getting the download URL: ", error);
     return null;
   }
+};
+
+export const signInWithGoogle = () => {
+  signInWithPopup(getAuth(app), new GoogleAuthProvider());
+};
+
+const firebaseSignOut = () => signOut(getAuth(app));
+
+export { firebaseSignOut as signOut };
+
+export const useAuthState = () => {
+  const [user, setUser] = useState();
+  
+  useEffect(() => (
+    onAuthStateChanged(getAuth(app), setUser)
+  ), []);
+
+  return [user];
 };
 
