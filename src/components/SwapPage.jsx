@@ -11,39 +11,6 @@ import { fetchDataArray } from '../utilities/fetch_data'
 const SwapPage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // const data = [
-  //   {
-  //     name: "John Doe",
-  //     image: "johndoe.jpeg",
-  //     "skills-have": ["guitar", "music composition"],
-  //     "skills-want": ["tennis"],
-  //   },
-  //   {
-  //     name: "Jane Smith",
-  //     image: "janedoe.jpeg",
-  //     "skills-have": ["programming", "graphic design"],
-  //     "skills-want": ["photography"],
-  //   },
-  //   {
-  //     name: "Robert Johnson",
-  //     image: "robertjohnson.jpeg",
-  //     "skills-have": ["cooking", "gardening"],
-  //     "skills-want": ["hiking"],
-  //   },
-  //   {
-  //     name: "Emily Davis",
-  //     image: "emilydavis.jpeg",
-  //     "skills-have": ["writing", "public speaking"],
-  //     "skills-want": ["yoga"],
-  //   },
-  //   {
-  //     name: "Michael Wilson",
-  //     image: "michaelwilson.jpeg",
-  //     "skills-have": ["photography", "video editing"],
-  //     "skills-want": ["sailing"],
-  //   },
-  // ];
-
   const [data, setData] = useState([]);
 
   // using useEffect like this calls fetchData() once rather than repeatedly!!!
@@ -62,11 +29,11 @@ const SwapPage = () => {
     fetchData();
   }, []);
 
-  // data follows this format:
+ // data follows this format:
   // [
   //   user0: {
-  //     id: str // (filepath of image)
-  //             //  needs to be changed to grab from firebase storage
+  //     email: str 
+  //     image: str (URL of image in storage)
   //     name: str 
   //     skills-have: str[]
   //     skills-want: str[]
