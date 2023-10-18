@@ -16,10 +16,7 @@ import SearchBar from './SearchBar';
 const SwapPage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
-
-  const [data, setData] = useState([]);
-  
+  const [filteredData, setFilteredData] = useState([]);  
   const [user, signInWithGoogle] = useAuthState();
 
   function onSearch(searchTerm) {
