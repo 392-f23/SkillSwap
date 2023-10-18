@@ -19,6 +19,9 @@ const SwapPage = () => {
   
   const [user, signInWithGoogle] = useAuthState();
 
+  console.log("user", user)
+  console.log("data", data)
+  // console.log("data.some(profile => profile.name === user.displayName)", data.some((profile) => console.log(profile.name, user.displayName)))
 
   // using useEffect like this calls fetchData() once rather than repeatedly!!!
   // apparently useEffect doesn't allow async requests unless it's done this way
@@ -55,6 +58,7 @@ const SwapPage = () => {
       // Refresh the data after adding a new profile
       const result = await fetchDataArray(db);
       setData(result);
+
     } catch (error) {
       console.error("Error adding profile:", error);
     }
@@ -84,7 +88,7 @@ const SwapPage = () => {
   
       // Construct the new user key and image name
       const newUserKey = `user${nextUserNumber}`;
-  
+      console.log("profile", profile)
       // Add or update the user in the "AAAAAAAA" document
       await setDoc(userDocRef, { [newUserKey]: profile }, { merge: true });
       
@@ -106,7 +110,7 @@ const SwapPage = () => {
       </BrowserRouter>
       {user ? (
         // User is logged in
-        data.some(profile => profile.name === user.displayName) ? (
+        data.some(profile => profile.email === user.email) ? (
           // User has a profile in the database
           <>
             <Sidebar show={sidebarOpen} onClose={() => setSidebarOpen(false)} />
@@ -114,7 +118,7 @@ const SwapPage = () => {
             {data.map((person, index) => (
               <div className="skill-cards" key={index}>
                 <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src={person.id} />
+                  <Card.Img variant="top" src={person.image} />
                   <Card.Body>
                     <Card.Title>{person.name}</Card.Title>
                     <div className="skills-section">
@@ -147,14 +151,14 @@ const SwapPage = () => {
           // User doesn't have a profile in the database
           <>
             <h1>SkillSwap</h1>
-            <ProfileForm onProfileSubmit={handleProfileSubmit} />
+            <ProfileForm onProfileSubmit={handleProfileSubmit} user={user} />
           </>
         )
       ) : (
         // User is not logged in
         <>
           <h1>SkillSwap</h1>
-          <button onClick={signInWithGoogle}>Log in</button>
+          <p>Please sign in at the top right!</p>
         </>
       )}
     </div>

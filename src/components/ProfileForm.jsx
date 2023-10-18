@@ -1,16 +1,20 @@
 // ProfileForm.js
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import './ProfileForm.css';
 
-const ProfileForm = ({ onProfileSubmit }) => {
-  const [name, setName] = useState('');
-  const [image, setImage] = useState('');
-  const [email, setEmail] = useState('');
+
+const ProfileForm = ({ onProfileSubmit, user }) => {
   const [skillsHave, setSkillsHave] = useState('');
   const [skillsWant, setSkillsWant] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const name = user.displayName
+    const image = user.photoURL
+    const email = user.email
+
     onProfileSubmit({
       name,
       image,
@@ -26,29 +30,19 @@ const ProfileForm = ({ onProfileSubmit }) => {
   };
 
   return (
+    <div className='profileForm'>
     <Form onSubmit={handleSubmit}>
       <Form.Group>
-        <Form.Label>Name</Form.Label>
-        <Form.Control type="text" value={name} onChange={e => setName(e.target.value)} />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Image URL</Form.Label>
-        <Form.Control type="text" value={image} onChange={e => setImage(e.target.value)} />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Email</Form.Label>
-        <Form.Control type="text" value={email} onChange={e => setEmail(e.target.value)} />
-      </Form.Group>
-      <Form.Group>
         <Form.Label>Skills Have (comma separated)</Form.Label>
-        <Form.Control type="text" value={skillsHave} onChange={e => setSkillsHave(e.target.value)} />
+        <Form.Control required type="text" value={skillsHave} onChange={e => setSkillsHave(e.target.value)} />
       </Form.Group>
       <Form.Group>
         <Form.Label>Skills Want (comma separated)</Form.Label>
-        <Form.Control type="text" value={skillsWant} onChange={e => setSkillsWant(e.target.value)} />
+        <Form.Control required type="text" value={skillsWant} onChange={e => setSkillsWant(e.target.value)} />
       </Form.Group>
       <Button type="submit">Create Profile</Button>
     </Form>
+    </div>
   );
 };
 
