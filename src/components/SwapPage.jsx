@@ -74,7 +74,7 @@ const SwapPage = () => {
             <Card.Title>{person.name}</Card.Title>
             <div className="skills-section">
               <div className="skills-label">Skills Have:</div>
-              <RenderSkillsHave skills={person["skills-have"]} />
+              <RenderSkillsHave skills={person["skills-have"]} levels={person["skills-have-levels"]} />
             </div>
             <div className="skills-section">
               <div className="skills-label">Skills Want:</div>
