@@ -12,6 +12,8 @@ import Navigation from './Navigation';
 import { BrowserRouter } from 'react-router-dom';
 import { useAuthState } from '..';
 import SearchBar from './SearchBar';
+import { RenderSkillsHave } from './SkillsHave';
+import { RenderSkillsWant } from './SkillsWant';
 
 const SwapPage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -24,7 +26,7 @@ const SwapPage = () => {
       return (
         person.name.toLowerCase().includes(searchTerm.toLowerCase()) 
         ||
-        Object.entries(person["skills-have"]).some((skill) =>
+        Object.entries(person["skills-have"]).some(([skill, level]) =>
           skill.toLowerCase().includes(searchTerm.toLowerCase())
         )
       );
@@ -126,38 +128,36 @@ const SwapPage = () => {
           <>
             <Sidebar show={sidebarOpen} onClose={() => setSidebarOpen(false)} />
             <h1>SkillSwap</h1>
-            {data.map((person, index) => (
-              <div className="skill-cards" key={index}>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src={person.image} />
-                  <Card.Body>
-                    <Card.Title>{person.name}</Card.Title>
-                    <div className="skills-section">
-                      <div className="skills-label">Skills Have:</div>
-                      <div className="skills-list">
-                        {person["skills-have"].map((skill, idx) => (
-                          <span key={idx} className="skill-tag">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="skills-section">
-                      <div className="skills-label">Skills Want:</div>
-                      <div className="skills-list">
-                        {person["skills-want"].map((skill, idx) => (
-                          <span key={idx} className="skill-tag">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <a href={`mailto:${person.email}`} >
-                      <Button variant="primary">Contact</Button>
-                    </a>
-                  </Card.Body>
-                </Card>
-              </div>
+            <SearchBar onSearch={onSearch} />
+            {filteredData.map((person, index) => (
+            <div className="skill-cards-container" key= {index} >
+            <div className="skill-cards" key= {index} >
+              <Card style={{ width: "18rem" }}>
+                <Card.Img variant="top" src={person.image} />
+                <Card.Body>
+                  <Card.Title>{person.name}</Card.Title>
+                  <div className="skills-section">
+                    <div className="skills-label">Skills Have:</div>
+                    <RenderSkillsHave skills={person["skills-have"]} levels={person["skills-have-levels"]} />
+                  </div>
+                  <div className="skills-section">
+                    <div className="skills-label">Skills Want:</div>
+                    <RenderSkillsWant skills={person["skills-want"]} />
+                    {/* <div className="skills-list">
+                      {person["skills-want"].map((skill, index) => (
+                        <span key={index} className="skill-tag">
+                          {skill}
+                        </span>
+                      ))}
+                    </div> */}
+                  </div>
+                  <a href={`mailto:${person.email}`} >
+                    <Button variant="primary">Contact</Button>
+                  </a>
+                </Card.Body>
+              </Card>
+            </div>
+            </div>
             ))}
           </>
         ) : (
