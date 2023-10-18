@@ -29,13 +29,25 @@ export const capitalizeWords = (skill) => {
 export const RenderSkillsHave = ({skills}) => {
     return (
     <div className="skills-list">
-        {skills.map((item, index) => {
-            const [ skill, level ] = item; // Destructure the object
-            return (
-                <span key={index} className="skill-tag">
-                    {capitalizeWords(skill)}    {turnIntoEmoji(level)}
-                </span>
-            );
-        })}
-    </div>);
+        {skills.map((skill, index) => (
+            <span key={index} className="skill-tag">
+            {capitalizeWords(skill)}
+            </span>
+        ))}
+    </div>)
 }
+
+
+// export const RenderSkillsHave = ({skills}) => {
+//     return (
+//     <div className="skills-list">
+//         {skills.map((item, index) => {
+//             // const [ skill, level ] = item; // Destructure the object
+//             return (
+//                 <span key={index} className="skill-tag">
+//                     {capitalizeWords(skill)}    {turnIntoEmoji(level)}
+//                 </span>
+//             );
+//         })}
+//     </div>);
+// }
