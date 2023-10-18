@@ -11,17 +11,30 @@ import { collection, doc, setDoc, updateDoc, getDoc } from 'firebase/firestore';
 import Navigation from './Navigation';
 import { BrowserRouter } from 'react-router-dom';
 import { useAuthState } from '..';
+import SearchBar from './SearchBar';
 
 const SwapPage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
   const [data, setData] = useState([]);
   
   const [user, signInWithGoogle] = useAuthState();
 
-  console.log("user", user)
-  console.log("data", data)
-  // console.log("data.some(profile => profile.name === user.displayName)", data.some((profile) => console.log(profile.name, user.displayName)))
+  function onSearch(searchTerm) {
+    const filteredPersons = data.filter((person) => {
+      return (
+        person.name.toLowerCase().includes(searchTerm.toLowerCase()) 
+        ||
+        Object.entries(person["skills-have"]).some((skill) =>
+          skill.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    });
+
+    setFilteredData(filteredPersons);
+  }
 
   // using useEffect like this calls fetchData() once rather than repeatedly!!!
   // apparently useEffect doesn't allow async requests unless it's done this way
@@ -32,6 +45,7 @@ const SwapPage = () => {
         // fetchDataArray() => [{data}] (from fetch_data.js)
         const result = await fetchDataArray(db);
         setData(result);
+        setFilteredData(result);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -39,11 +53,11 @@ const SwapPage = () => {
     fetchData();
   }, []);
 
-  // data follows this format:
+ // data follows this format:
   // [
   //   user0: {
-  //     id: str // (filepath of image)
-  //             //  needs to be changed to grab from firebase storage
+  //     email: str 
+  //     image: str (URL of image in storage)
   //     name: str 
   //     skills-have: str[]
   //     skills-want: str[]
@@ -141,7 +155,9 @@ const SwapPage = () => {
                         ))}
                       </div>
                     </div>
-                    <Button variant="primary">Contact</Button>
+                    <a href={`mailto:${person.email}`} >
+                      <Button variant="primary">Contact</Button>
+                    </a>
                   </Card.Body>
                 </Card>
               </div>
