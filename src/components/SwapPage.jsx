@@ -20,7 +20,7 @@ const SwapPage = () => {
       return (
         person.name.toLowerCase().includes(searchTerm.toLowerCase()) 
         ||
-        Object.entries(person["skills-have"]).some((skill) =>
+        Object.entries(person["skills-have"]).some(([skill, level]) =>
           skill.toLowerCase().includes(searchTerm.toLowerCase())
         )
       );
