@@ -10,8 +10,11 @@ const ProfileForm = ({ onProfileSubmit, user }) => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
+    const allowedExtensions = ['.jpg', '.jpeg', '.png'];
+    if (file && allowedExtensions.some(ext => file.name.toLowerCase().endsWith(ext))) {
       setImageFile(file);
+    } else {
+      alert('Please upload a .jpg, .jpeg, or .png file.');
     }
   };
 
@@ -108,7 +111,7 @@ const ProfileForm = ({ onProfileSubmit, user }) => {
 
         <Form.Group className="form-group">
           <Form.Label>Profile Picture</Form.Label>
-          <Form.Control type="file" onChange={handleFileChange} />
+          <Form.Control type="file" onChange={handleFileChange} accept=".jpg,.jpeg,.png" />
         </Form.Group>
 
         <Button type="submit">Create Profile</Button>
