@@ -1,101 +1,183 @@
+html, body {
+  min-height: 100vh;
+}
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  margin-top: 20px;  /* Adjust as needed */
+  color: white;
+}
+
+.logged-in h1{
+  color: black;
+}
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0; /* Ensure there's no default margin */
+}
+
+.not-logged-in {
+  background: linear-gradient(45deg, #4A90E2, #50E3A4);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.logged-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(45deg, rgba(74, 144, 226, 0.4), rgba(80, 227, 164, 0.4 ));
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+nav.d-flex {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1002; /* Ensure it's above other elements */
+}
+
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  margin-top: 50px;
+  color: white;
+}
+
 .sidebar-toggle-button {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    background-color: #333;
-    color: white;
-    border: none;
-    font-size: 24px;
-    border-radius: 4px;
-    z-index: 1001;  /* So it appears on top of the sidebar */
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  font-size: 24px;
+  border-radius: 4px;
+  z-index: 1001;  /* So it appears on top of the sidebar */
 }
 
 button {
-    font-size: calc(10px + 2vmin);
-  }
-  
-  .skill-cards-container {
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-  }
+  font-size: calc(10px + 2vmin);
+}
 
-  .skill-cards {
-    margin: 20px;
-    display: inline-block;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    width: 18rem;
-    vertical-align: top;
-  }
-  
-  .skill-cards:hover {
-    transform: translateY(-5px);
-  }
-  
-  .skill-cards .card {
-    border: none;
-  }
-  
-  .skill-cards .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  .skill-cards .card-text {
-    font-size: 0.9rem;
-    
-  }
-  
-  .skill-cards .card-img-top {
-    object-fit: cover;
-    height: 200px; /* Adjust the height as needed */
-  }
-  
-  .skill-cards .card-body {
-    padding: 1rem;
-  }
-  
-  .skill-cards .btn {
-    background-color: #007bff;
-    border: none;
-    color: #fff;
-  }
-  
-  .skill-cards .btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .skill-cards .skills-section {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-radius: 5px;
-    margin-bottom: 10px; /* Add margin to create space */
-  }
-  
-  .skill-cards .skills-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .skill-cards .skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    justify-content: center;
-  }
-  
-  .skill-cards .skill-tag {
-    background-color: #007bff;
-    color: #fff;
-    padding: 4px 8px;
-    border-radius: 5px;
-    font-size: 0.85rem;
-  }
-  
+.skill-cards-container {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+}
 
+.skill-cards {
+  margin: 20px;
+  display: inline-block;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  width: 18rem;
+  vertical-align: top;
+}
+
+.skill-cards:hover {
+  transform: translateY(-5px);
+}
+
+.skill-cards .card {
+  border: none;
+}
+
+.skill-cards .card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.skill-cards .card-text {
+  font-size: 0.9rem;
+}
+
+.skill-cards .card-img-top {
+  object-fit: cover;
+  height: 200px;
+}
+
+.skill-cards .card-body {
+  padding: 1rem;
+}
+
+.skill-cards .btn {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+}
+
+.skill-cards .btn:hover {
+  background-color: #0056b3;
+}
+
+.skill-cards .skills-section {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.skill-cards .skills-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.skill-cards .skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+}
+
+.skill-cards .skill-tag {
+  background-color: #007bff;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+}
+
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.centered-content h1 {
+  font-size: 4rem;  /* Increased font size */
+  font-weight: bold;  /* Bold font weight */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);  /* Subtle text shadow */
+  margin-bottom: 20px;  /* Spacing between the title and the message */
+  color: #ffffff;  /* White color for better contrast */
+}
+.top-heading {
+  text-align: center;
+  margin-top: 10px;  /* Adjust based on the height of the navigation bar */
+}
+
+
+.centered-content p {
+  font-size: 1.5rem;  /* Increased font size */
+  font-weight: 500;  /* Semi-bold font weight */
+  letter-spacing: 2px;  /* Spacing between letters */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);  /* Subtle text shadow */
+  color: #ffffff;  /* White color for better contrast */
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
 

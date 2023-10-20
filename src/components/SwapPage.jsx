@@ -2,7 +2,6 @@ import { useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SwapPage.css';
 import { Button, Card } from "react-bootstrap";
-import Sidebar from './SideBar';
 import ImageDisplay from './GetImage';
 import ProfileForm from './ProfileForm';
 import { db } from '..';
@@ -116,8 +115,7 @@ const SwapPage = () => {
   
   
   return (
-    <div>
-      <button className="sidebar-toggle-button" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
+    <div className={`${!user ? "not-logged-in" : "logged-in"}`}>
       <BrowserRouter>
         <Navigation />
       </BrowserRouter>
@@ -126,39 +124,40 @@ const SwapPage = () => {
         data.some(profile => profile.email === user.email) ? (
           // User has a profile in the database
           <>
-            <Sidebar show={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-            <h1>SkillSwap</h1>
+            <h1 className='top-heading'>SkillSwap</h1> {/* Rendered at the top for logged-in users */}
             <SearchBar onSearch={onSearch} />
-            {filteredData.map((person, index) => (
-            <div className="skill-cards-container" key= {index} >
-            <div className="skill-cards" key= {index} >
-              <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src={person.image} />
-                <Card.Body>
-                  <Card.Title>{person.name}</Card.Title>
-                  <div className="skills-section">
-                    <div className="skills-label">Skills Have:</div>
-                    <RenderSkillsHave skills={person["skills-have"]} levels={person["skills-have-levels"]} />
-                  </div>
-                  <div className="skills-section">
-                    <div className="skills-label">Skills Want:</div>
-                    <RenderSkillsWant skills={person["skills-want"]} />
-                    {/* <div className="skills-list">
-                      {person["skills-want"].map((skill, index) => (
-                        <span key={index} className="skill-tag">
-                          {skill}
-                        </span>
-                      ))}
-                    </div> */}
-                  </div>
-                  <a href={`mailto:${person.email}`} >
-                    <Button variant="primary">Contact</Button>
-                  </a>
-                </Card.Body>
-              </Card>
+            <div className='cards-container'>
+              {filteredData.map((person, index) => (
+              <div className="skill-cards-container" key= {index} >
+              <div className="skill-cards" key= {index} >
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src={person.image} />
+                  <Card.Body>
+                    <Card.Title>{person.name}</Card.Title>
+                    <div className="skills-section">
+                      <div className="skills-label">Skills Have:</div>
+                      <RenderSkillsHave skills={person["skills-have"]} levels={person["skills-have-levels"]} />
+                    </div>
+                    <div className="skills-section">
+                      <div className="skills-label">Skills Want:</div>
+                      <RenderSkillsWant skills={person["skills-want"]} />
+                      {/* <div className="skills-list">
+                        {person["skills-want"].map((skill, index) => (
+                          <span key={index} className="skill-tag">
+                            {skill}
+                          </span>
+                        ))}
+                      </div> */}
+                    </div>
+                    <a href={`mailto:${person.email}`} >
+                      <Button variant="primary">Contact</Button>
+                    </a>
+                  </Card.Body>
+                </Card>
+              </div>
+              </div>
+              ))}
             </div>
-            </div>
-            ))}
           </>
         ) : (
           // User doesn't have a profile in the database
@@ -169,10 +168,10 @@ const SwapPage = () => {
         )
       ) : (
         // User is not logged in
-        <>
+        <div className="centered-content">
           <h1>SkillSwap</h1>
-          <p>Please sign in at the top right!</p>
-        </>
+          {!user && <p>Please sign in at the top right!</p>}
+        </div>
       )}
     </div>
   );
