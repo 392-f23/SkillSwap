@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   min-height: 100vh;
   height: 100%;
   margin: 0;
@@ -6,20 +7,20 @@ html, body {
 h1 {
   text-align: center;
   font-size: 3rem;
-  margin-top: 20px;  /* Adjust as needed */
+  margin-top: 20px; /* Adjust as needed */
   color: white;
 }
 
-.logged-in h1{
+.logged-in h1 {
   color: black;
 }
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   margin: 0; /* Ensure there's no default margin */
 }
 
 .not-logged-in {
-  background: linear-gradient(45deg, #4A90E2, #50E3A4);
+  background: linear-gradient(45deg, #4a90e2, #50e3a4);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -29,19 +30,26 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(45deg, rgba(74, 144, 226, 0.4), rgba(80, 227, 164, 0.4 ));
+  background: linear-gradient(
+    45deg,
+    rgba(74, 144, 226, 0.4),
+    rgba(80, 227, 164, 0.4)
+  );
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
-nav.d-flex {
+.logged {
   width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;
+  top: 6px;
+  right: 6px;
   z-index: 1002; /* Ensure it's above other elements */
 }
 
+nav.d-flex .notlogged {
+  width: 100%;
+}
 
 h1 {
   text-align: center;
@@ -59,7 +67,7 @@ h1 {
   border: none;
   font-size: 24px;
   border-radius: 4px;
-  z-index: 1001;  /* So it appears on top of the sidebar */
+  z-index: 1001; /* So it appears on top of the sidebar */
 }
 
 button {
@@ -157,24 +165,23 @@ button {
 }
 
 .centered-content h1 {
-  font-size: 4rem;  /* Increased font size */
-  font-weight: bold;  /* Bold font weight */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);  /* Subtle text shadow */
-  margin-bottom: 20px;  /* Spacing between the title and the message */
-  color: #ffffff;  /* White color for better contrast */
+  font-size: 4rem; /* Increased font size */
+  font-weight: bold; /* Bold font weight */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+  margin-bottom: 20px; /* Spacing between the title and the message */
+  color: #ffffff; /* White color for better contrast */
 }
 .top-heading {
   text-align: center;
-  margin-top: 10px;  /* Adjust based on the height of the navigation bar */
+  margin-top: 10px; /* Adjust based on the height of the navigation bar */
 }
 
-
 .centered-content p {
-  font-size: 1.5rem;  /* Increased font size */
-  font-weight: 500;  /* Semi-bold font weight */
-  letter-spacing: 2px;  /* Spacing between letters */
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);  /* Subtle text shadow */
-  color: #ffffff;  /* White color for better contrast */
+  font-size: 1.5rem; /* Increased font size */
+  font-weight: 500; /* Semi-bold font weight */
+  letter-spacing: 2px; /* Spacing between letters */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+  color: #ffffff; /* White color for better contrast */
 }
 
 .cards-container {
@@ -183,4 +190,3 @@ button {
   justify-content: center;
   width: 100%;
 }
-
