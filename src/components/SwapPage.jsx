@@ -121,8 +121,19 @@ const SwapPage = () => {
                 <Navigation />
               </div>
               <h1 className="top-heading">SkillSwap</h1>{" "}
-              {/* Rendered at the top for logged-in users */}
               <SearchBar onSearch={onSearch} />
+              <div className="skills-legend">
+                <div className="skills-legend-title"><h4>Legend:</h4></div>
+                <div className="skills-legend-item">
+                  <div className="skills-legend-text">🌱 Beginner</div>
+                </div>
+                <div className="skills-legend-item">
+                  <div className="skills-legend-text">📈 Intermediate</div>
+                </div>
+                <div className="skills-legend-item">
+                  <div className="skills-legend-text">🔥 Advanced</div>
+                </div>
+              </div>
               <div className="cards-container">
                 {filteredData.map((person, index) => (
                   <div className="skill-cards-container" key={index}>
@@ -141,13 +152,6 @@ const SwapPage = () => {
                           <div className="skills-section">
                             <div className="skills-label">Skills Want:</div>
                             <RenderSkillsWant skills={person["skills-want"]} />
-                            {/* <div className="skills-list">
-                        {person["skills-want"].map((skill, index) => (
-                          <span key={index} className="skill-tag">
-                            {skill}
-                          </span>
-                        ))}
-                      </div> */}
                           </div>
                           <a href={`mailto:${person.email}`}>
                             <Button variant="primary">Contact</Button>

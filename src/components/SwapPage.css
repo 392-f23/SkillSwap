@@ -19,6 +19,17 @@ body {
   margin: 0; /* Ensure there's no default margin */
 }
 
+.skills-legend {
+  background-color: white;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.skills-legend-text {
+  text-align: left;
+}
+
 .not-logged-in {
   background: linear-gradient(45deg, #4a90e2, #50e3a4);
   background-size: cover;
