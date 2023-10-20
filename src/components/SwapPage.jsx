@@ -23,13 +23,13 @@ const SwapPage = () => {
   function onSearch(searchTerm) {
     const filteredPersons = data.filter((person) => {
       return (
-        person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        Object.entries(person["skills-have"]).some(([skill, level]) =>
+        person.name.toLowerCase().includes(searchTerm.toLowerCase()) 
+        ||
+        person["skills-have"].some((skill) =>
           skill.toLowerCase().includes(searchTerm.toLowerCase())
         )
       );
     });
-
     setFilteredData(filteredPersons);
   }
 
