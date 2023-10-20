@@ -1,5 +1,7 @@
 html, body {
   min-height: 100vh;
+  height: 100%;
+  margin: 0;
 }
 h1 {
   text-align: center;
@@ -23,6 +25,7 @@ body {
   background-position: center;
 }
 .logged-in {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
