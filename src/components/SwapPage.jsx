@@ -165,6 +165,9 @@ const SwapPage = () => {
           ) : (
             // User doesn't have a profile in the database
             <>
+              <div className="logged">
+                <Navigation />
+              </div>
               <h1>SkillSwap</h1>
               <ProfileForm onProfileSubmit={handleProfileSubmit} user={user} />
             </>
