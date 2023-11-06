@@ -109,7 +109,7 @@ const SwapPage = () => {
   };
 
   return (
-    <div className={`${!user ? "not-logged-in" : "logged-in"}`}>
+    <div className={`${!user ? "not-logged-in" : "logged-in"}`} data-testid="swap-page">
       <BrowserRouter>
         {user ? (
           // User is logged in
