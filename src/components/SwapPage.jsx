@@ -120,7 +120,7 @@ const SwapPage = () => {
                 <Navigation />
               </div>
               <h1 className="top-heading">SkillSwap</h1>{" "}
-              <SearchBar onSearch={onSearch} />
+              <SearchBar id="searchBar" onSearch={onSearch} />
               <div className="skills-legend">
                 <div className="skills-legend-title"><h4>Legend:</h4></div>
                 <div className="skills-legend-item">
