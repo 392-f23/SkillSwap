@@ -8,7 +8,7 @@ import { fetchDataArray } from "../utilities/fetch_data";
 import { collection, doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
 import Navigation from "./Navigation";
 import { BrowserRouter } from "react-router-dom";
-import { db, useAuthState }  from "../utilities/firebase";
+import { db, useAuthState } from "../utilities/firebase";
 import SearchBar from "./SearchBar";
 import { RenderSkillsHave } from "./SkillsHave";
 import { RenderSkillsWant } from "./SkillsWant";
@@ -22,8 +22,7 @@ const SwapPage = () => {
   function onSearch(searchTerm) {
     const filteredPersons = data.filter((person) => {
       return (
-        person.name.toLowerCase().includes(searchTerm.toLowerCase()) 
-        ||
+        person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         person["skills-have"].some((skill) =>
           skill.toLowerCase().includes(searchTerm.toLowerCase())
         )
@@ -109,7 +108,10 @@ const SwapPage = () => {
   };
 
   return (
-    <div className={`${!user ? "not-logged-in" : "logged-in"}`} data-testid="swap-page">
+    <div
+      className={`${!user ? "not-logged-in" : "logged-in"}`}
+      data-testid="swap-page"
+    >
       <BrowserRouter>
         {user ? (
           // User is logged in
@@ -122,7 +124,9 @@ const SwapPage = () => {
               <h1 className="top-heading">SkillSwap</h1>{" "}
               <SearchBar onSearch={onSearch} />
               <div className="skills-legend">
-                <div className="skills-legend-title"><h4>Legend:</h4></div>
+                <div className="skills-legend-title">
+                  <h4>Legend:</h4>
+                </div>
                 <div className="skills-legend-item">
                   <div className="skills-legend-text">🌱 Beginner</div>
                 </div>
@@ -152,7 +156,10 @@ const SwapPage = () => {
                             <div className="skills-label">Skills Want:</div>
                             <RenderSkillsWant skills={person["skills-want"]} />
                           </div>
-                          <a href={`mailto:${person.email}`}>
+                          <a
+                            className="contact-link"
+                            href={`mailto:${person.email}`}
+                          >
                             <Button variant="primary">Contact</Button>
                           </a>
                         </Card.Body>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 // function Search({ details }) {
 
 //   const [searchField, setSearchField] = useState("");
@@ -34,10 +33,10 @@ import React, { useState } from "react";
 //         <h2 className="f2">Search your term</h2>
 //       </div>
 //       <div className="pa2">
-//         <input 
+//         <input
 //           className="pa3 bb br3 grow b--none bg-lightest-blue ma3"
-//           type = "search" 
-//           placeholder = "Search People" 
+//           type = "search"
+//           placeholder = "Search People"
 //           onChange = {handleChange}
 //         />
 //       </div>
@@ -47,25 +46,25 @@ import React, { useState } from "react";
 // }
 
 const SearchBar = ({ onSearch }) => {
-    const [searchTerm, setSearchTerm] = useState("");
-  
-    const handleSearch = (e) => {
-        console.log("e", e)
-        console.log("e.target.value", e.target.value)
-        onSearch(e.target.value);
-        setSearchTerm(e.target.value);
-    };
-  
-    return (
-      <div>
-        <input
-          type="text"
-          placeholder="Search"
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-      </div>
-    );
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (e) => {
+    console.log("e", e);
+    console.log("e.target.value", e.target.value);
+    onSearch(e.target.value);
+    setSearchTerm(e.target.value);
   };
-  
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Search"
+        value={searchTerm}
+        onChange={handleSearch}
+      />
+    </div>
+  );
+};
+
 export default SearchBar;
