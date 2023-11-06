@@ -10,11 +10,15 @@ import { fetchDataArray } from '../utilities/fetch_data'
 import { collection, doc, setDoc, updateDoc, getDoc } from 'firebase/firestore';
 import Navigation from './Navigation';
 import { BrowserRouter } from 'react-router-dom';
+import { useAuthState } from '..';
 
 const SwapPage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [data, setData] = useState([]);
+  
+  const [user, signInWithGoogle] = useAuthState();
+
 
   // using useEffect like this calls fetchData() once rather than repeatedly!!!
   // apparently useEffect doesn't allow async requests unless it's done this way
@@ -96,45 +100,63 @@ const SwapPage = () => {
   
   return (
     <div>
-    <button className="sidebar-toggle-button" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
-    <BrowserRouter>
-      <Navigation></Navigation>
-    </BrowserRouter>
-    <Sidebar show={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      <ProfileForm onProfileSubmit={handleProfileSubmit} />
-      <h1>SkillSwap</h1>
-      {data.map((person, index) => (
-      <div className="skill-cards">
-        <Card style={{ width: "18rem" }}>
-          {/* <ImageDisplay storagePath="https://firebasestorage.googleapis.com/v0/b/skillswap-5f85d.appspot.com/o/0.jpg?alt=media&token=3c4c0502-4271-40e1-ba70-57b9ea0eefdb&_gl=1*hg7oh*_ga*MTY2MjQ5MzkyOC4xNjkyMzEzMDY5*_ga_CW55HF8NVT*MTY5NzA1ODUzOC4xOC4xLjE2OTcwNjA2NjIuNjAuMC4w" /> */}
-          <Card.Img variant="top" src="https://firebasestorage.googleapis.com/v0/b/skillswap-5f85d.appspot.com/o/0.jpg?alt=media&token=3c4c0502-4271-40e1-ba70-57b9ea0eefdb&_gl=1*hg7oh*_ga*MTY2MjQ5MzkyOC4xNjkyMzEzMDY5*_ga_CW55HF8NVT*MTY5NzA1ODUzOC4xOC4xLjE2OTcwNjA2NjIuNjAuMC4w" />
-          <Card.Body>
-            <Card.Title>{person.name}</Card.Title>
-            <div className="skills-section">
-              <div className="skills-label">Skills Have:</div>
-              <div className="skills-list">
-                {Object.entries(person["skills-have"]).map((skill, index) => (
-                  <span key={index} className="skill-tag">
-                    {skill}
-                  </span>
-                ))}
+      <button className="sidebar-toggle-button" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
+      <BrowserRouter>
+        <Navigation />
+      </BrowserRouter>
+      {user ? (
+        // User is logged in
+        data.some(profile => profile.name === user.displayName) ? (
+          // User has a profile in the database
+          <>
+            <Sidebar show={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+            <h1>SkillSwap</h1>
+            {data.map((person, index) => (
+              <div className="skill-cards" key={index}>
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src={person.id} />
+                  <Card.Body>
+                    <Card.Title>{person.name}</Card.Title>
+                    <div className="skills-section">
+                      <div className="skills-label">Skills Have:</div>
+                      <div className="skills-list">
+                        {person["skills-have"].map((skill, idx) => (
+                          <span key={idx} className="skill-tag">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="skills-section">
+                      <div className="skills-label">Skills Want:</div>
+                      <div className="skills-list">
+                        {person["skills-want"].map((skill, idx) => (
+                          <span key={idx} className="skill-tag">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <Button variant="primary">Contact</Button>
+                  </Card.Body>
+                </Card>
               </div>
-            </div>
-            <div className="skills-section">
-              <div className="skills-label">Skills Want:</div>
-              <div className="skills-list">
-                {person["skills-want"].map((skill, index) => (
-                  <span key={index} className="skill-tag">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <Button variant="primary">Contact</Button>
-          </Card.Body>
-        </Card>
-      </div>
-      ))}
+            ))}
+          </>
+        ) : (
+          // User doesn't have a profile in the database
+          <>
+            <h1>SkillSwap</h1>
+            <ProfileForm onProfileSubmit={handleProfileSubmit} />
+          </>
+        )
+      ) : (
+        // User is not logged in
+        <>
+          <h1>SkillSwap</h1>
+          <button onClick={signInWithGoogle}>Log in</button>
+        </>
+      )}
     </div>
   );
 };
