@@ -1,0 +1,41 @@
+.profileForm {
+    display: flex;
+    justify-content: center;
+}
+
+.remove-skills-button {
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.remove-skills-button:hover {
+    background-color: #9d0000;
+}
+
+.add-skills-button {
+    color: #fff;
+    margin: 10 10 10 10px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.add-skills-button:hover {
+    background-color: #136005;
+}
+
+.input-skills-have {
+    display: flex;
+    align-items: center;
+    margin: 2 2 2 2px;
+    padding: 8px 14px;
+}
+
+/* yea idk why this one's not workign */
+.form-group {
+    margin-bottom: 10px;
+}
