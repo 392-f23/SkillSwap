@@ -36,6 +36,7 @@ const ProfileForm = ({ onProfileSubmit, user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("handleSubmit called");
 
     const name = user.displayName;
     const email = user.email;
