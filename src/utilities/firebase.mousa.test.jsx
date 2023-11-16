@@ -37,6 +37,30 @@ describe('ProfileForm tests', () => {
         }));
     });
 
+    it('should add multiple skills in "skills-want" separated by commas', async () => {
+        const onProfileSubmitMock = vi.fn();
+        const mockUser = { displayName: 'Test User', email: 'test@example.com', photoURL: 'http://example.com/photo.jpg' };
+        render(<ProfileForm onProfileSubmit={onProfileSubmitMock} user={mockUser} />);
+
+        // Simulate typing in the "skills-want" field
+        const skillsWantInput = screen.getByPlaceholderText("coding,baking,etc...");
+        fireEvent.change(skillsWantInput, { target: { value: 'coding, baking, painting' } });
+
+        // Optional: Add skills in "skills-have" if required for form submission
+        // ...code to add skills to "skills-have"...
+        const skillInputs = screen.getAllByRole('textbox');
+        fireEvent.change(skillInputs[0], { target: { value: 'Skill1' } });
+
+        // Submit the form
+        const submitButton = screen.getByRole('button', { name: /Create Profile/i });
+        await fireEvent.click(submitButton);
+
+        // Check if onProfileSubmit was called with the correct "skills-want"
+        expect(onProfileSubmitMock).toHaveBeenCalledWith(expect.objectContaining({
+            "skills-want": expect.arrayContaining(['coding', 'baking', 'painting']),
+        }));
+    });
+
     it('should fail to submit the form when no skills are added', async () => {
         const onProfileSubmitMock = vi.fn();
         const mockUser = { displayName: 'Test User', email: 'test@example.com', photoURL: 'http://example.com/photo.jpg' };
