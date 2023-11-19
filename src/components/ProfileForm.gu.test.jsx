@@ -1,13 +1,21 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import ProfileForm from './ProfileForm';
+import { useAuthState }  from "../utilities/firebase";
+import { fetchDataArray } from '../utilities/fetch_data';
+vi.mock('../utilities/firebase');
+useAuthState.mockReturnValue([null, null]);
+
+vi.mock('../utilities/fetch_data');
+fetchDataArray.mockReturnValue([{displayName: "John Doe", email: "johndoe@gmail.com"}, {displayName: "Jane Doe", email: "janedoe@gmail.com"}]);
+const mockUser = { displayName: 'John Doe', email: 'johndoe@gmail.com'};
 
 test('renders ProfileForm component', () => {
-  render(<ProfileForm />);
+  render(<ProfileForm user={mockUser}/>);
   expect(screen.getByLabelText('Skills Have')).toBeTruthy();
 });
 
 test('submits form with correct data', async () => {
-  render(<ProfileForm />);
+  render(<ProfileForm user={mockUser}/>);
 
   // Interaction with the form fields
   fireEvent.change(screen.getByLabelText('Skills Have', { selector: 'input' }), {
