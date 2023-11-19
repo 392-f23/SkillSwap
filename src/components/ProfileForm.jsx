@@ -73,13 +73,14 @@ const ProfileForm = ({ onProfileSubmit, user }) => {
     <div className='profileForm'>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-          <Form.Label>Skills Have</Form.Label>
+          <Form.Label for="skills-have">Skills Have</Form.Label>
           {skillsHaveFields.map((field, index) => (
             <div className="row">
               <div key={index} className="input-skills-have">
                 <div className="col-7">
                 <Form.Control
                   required
+                  id="skills-have"
                   type="text"
                   value={field.skill}
                   onChange={(e) => handleSkillsHaveChange(index, 'skill', e.target.value)}
@@ -105,14 +106,14 @@ const ProfileForm = ({ onProfileSubmit, user }) => {
 
 
         <Form.Group className="form-group">
-          <Form.Label>Skills Want (comma separated)</Form.Label>
-          <Form.Control placeholder="coding,baking,etc..." required type="text" value={skillsWant} onChange={e => setSkillsWant(e.target.value)} />
+          <Form.Label for="skills-want">Skills Want (comma separated)</Form.Label>
+          <Form.Control id="skills-want" placeholder="coding,baking,etc..." required type="text" value={skillsWant} onChange={e => setSkillsWant(e.target.value)} />
         </Form.Group>
         
 
         <Form.Group className="form-group">
-          <Form.Label>Profile Picture</Form.Label>
-          <Form.Control type="file" onChange={handleFileChange} accept=".jpg,.jpeg,.png" />
+          <Form.Label for="profile-pic">Profile Picture</Form.Label>
+          <Form.Control id="profile-pic" type="file" onChange={handleFileChange} accept=".jpg,.jpeg,.png" />
         </Form.Group>
 
         <Button type="submit">Create Profile</Button>

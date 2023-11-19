@@ -57,7 +57,9 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <div>
+      <label htmlFor="search">Search</label>
       <input
+        id="search"
         type="text"
         placeholder="Search"
         value={searchTerm}

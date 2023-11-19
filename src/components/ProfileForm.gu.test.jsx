@@ -27,6 +27,7 @@ test('submits form with correct data', async () => {
 
   // Wait for asynchronous tasks to complete (e.g., image upload)
   await waitFor(() => {
-
+    // Assertions based on the expected behavior after submission
+    // Add your assertions here based on the behavior of your component after form submission
   });
 });
