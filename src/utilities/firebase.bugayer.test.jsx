@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import ProfileForm from './ProfileForm';
+import ProfileForm from '../components/ProfileForm';
 import { createProfile } from './api'; // replace with your actual API module
 
 jest.mock('./api'); // Mock the API module
